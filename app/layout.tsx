@@ -3,9 +3,14 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'VEYRA — Make it matter.',
+  description: 'VEYRA is an independent creative studio building brands, digital experiences, and ideas for the future-facing.',
   generator: 'v0.app',
+  openGraph: {
+    title: 'VEYRA — Make it matter.',
+    description: 'Independent creative studio for the future-facing.',
+    type: 'website',
+  },
   icons: {
     icon: [
       {
@@ -26,11 +31,9 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#101110',
+  userScalable: false,
 }
 
 export default function RootLayout({
