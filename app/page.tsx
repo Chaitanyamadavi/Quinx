@@ -1,5 +1,5 @@
-import VeyraPage from '@/components/veyra-page'
+import QuinxPage from '@/components/veyra-page'
 
 export default function Page() {
-  return <VeyraPage />
+  return <QuinxPage />
 }

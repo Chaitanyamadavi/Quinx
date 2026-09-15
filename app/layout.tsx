@@ -3,11 +3,11 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'VEYRA — We Design It. We Build It. We Grow It.',
-  description: 'VEYRA is an independent digital agency creating distinctive websites, digital products, brands and growth strategies for ambitious businesses.',
+  title: 'QUINX — We Design It. We Build It. We Grow It.',
+  description: 'QUINX is an independent digital agency creating distinctive websites, digital products, brands and growth strategies for ambitious businesses.',
   generator: 'v0.app',
   openGraph: {
-    title: 'VEYRA — We Design It. We Build It. We Grow It.',
+    title: 'QUINX — We Design It. We Build It. We Grow It.',
     description: 'Independent digital agency for ambitious businesses.',
     type: 'website',
   },
