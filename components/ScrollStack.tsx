@@ -59,7 +59,8 @@ export default function ScrollStack({ children, className = '', itemDistance = 1
 
     cardsRef.current.forEach((card, index) => {
       const cardTop = getOffset(card)
-      const triggerStart = cardTop - stackStart - itemStackDistance * index
+      const stackDistance = Math.max(itemStackDistance, card.offsetHeight - 24)
+      const triggerStart = cardTop - stackStart - stackDistance * index
       const triggerEnd = cardTop - scaleEnd
       const progress = clampProgress(scrollTop, triggerStart, triggerEnd)
       const scale = 1 - progress * (1 - (baseScale + index * itemScale))
@@ -67,11 +68,12 @@ export default function ScrollStack({ children, className = '', itemDistance = 1
       const pinStart = triggerStart
       const pinEnd = endTop - containerHeight / 2
       const pinned = scrollTop >= pinStart && scrollTop <= pinEnd
-      const translateY = pinned ? scrollTop - cardTop + stackStart + itemStackDistance * index : scrollTop > pinEnd ? pinEnd - cardTop + stackStart + itemStackDistance * index : 0
+      const translateY = pinned ? scrollTop - cardTop + stackStart + stackDistance * index : scrollTop > pinEnd ? pinEnd - cardTop + stackStart + stackDistance * index : 0
       const depth = Math.max(0, topCardIndex - index)
       const blur = index < topCardIndex ? depth * blurAmount : 0
       card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale}) rotate(${index * rotationAmount * progress}deg)`
       card.style.filter = blur ? `blur(${blur}px)` : ''
+      card.style.zIndex = String(index + 1)
       if (index === cardsRef.current.length - 1) {
         const inView = scrollTop >= pinStart && scrollTop <= pinEnd
         if (inView && !completedRef.current) { completedRef.current = true; onStackComplete?.() }
