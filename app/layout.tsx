@@ -1,15 +1,34 @@
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
+const siteUrl = 'https://veyra-blush-five.vercel.app'
+const siteTitle = 'QUINX | Independent Digital Agency'
+const siteDescription = 'QUINX is an independent digital agency providing SEO, digital marketing, website design, web development, digital products, branding and growth solutions for ambitious businesses.'
+
 export const metadata: Metadata = {
-  title: 'QUINX — We Design It. We Build It. We Grow It.',
-  description: 'QUINX is an independent digital agency creating distinctive websites, digital products, brands and growth strategies for ambitious businesses.',
-  generator: 'v0.app',
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  verification: {
+    google: 'Bnw2aqZnVWcPy02iihL0tVCBiehDB0RnzMyLKhPxZfc',
+  },
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'QUINX — We Design It. We Build It. We Grow It.',
-    description: 'Independent digital agency for ambitious businesses.',
+    title: siteTitle,
+    description: siteDescription,
     type: 'website',
+    url: siteUrl,
+    siteName: 'QUINX',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary',
+    title: siteTitle,
+    description: siteDescription,
   },
   icons: {
     icon: [
@@ -46,6 +65,19 @@ export default function RootLayout({
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} strategy="afterInteractive" />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
