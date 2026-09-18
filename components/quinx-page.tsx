@@ -50,9 +50,16 @@ function Intro() {
 
 function Nav() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   useEffect(() => { document.body.style.overflow = open ? 'hidden' : ''; return () => { document.body.style.overflow = '' } }, [open])
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 32)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
   const links = ['Services', 'About']
-  return <motion.header className="site-nav" initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .9, duration: .7, ease: [0.22, 1, 0.36, 1] }}>
+  return <motion.header className={`site-nav ${scrolled ? 'site-nav--scrolled' : ''}`} initial={{ opacity: 0, y: -24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .9, duration: .7, ease: [0.22, 1, 0.36, 1] }}>
     <motion.a href="#top" className="wordmark" aria-label="Quinx home" initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: .6 }}>QUINX<span>®</span></motion.a>
     <nav className="desktop-nav">{links.map((link, i) => <motion.a key={link} href={`#${link.toLowerCase()}`} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.05 + i * .08, duration: .5 }}>{link}</motion.a>)}<motion.a href="#contact" className="nav-contact" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: .5 }}>Start a project <ArrowUpRight size={14} /></motion.a></nav>
     <button className="menu-button" onClick={() => setOpen(value => !value)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
