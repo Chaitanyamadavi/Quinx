@@ -153,8 +153,24 @@ footer { background: rgba(255, 255, 255, .02); backdrop-filter: blur(14px); bord
 	.process-stack .process-card article { min-height: 196px; }
 	.process-stack .process-card h3 { margin-top: 66px; }
 	.about-copy { padding: 22px; }
-}
+	}
 @media (prefers-reduced-motion: reduce) {
 	.hero::after { animation: none; }
 	.site-nav, .scroll-cue, .nav-contact, .contact-link { transition: none; }
 }
+.legal-page { min-height: 100vh; padding: 28px 5vw 100px; background: var(--background); color: var(--foreground); }
+.legal-header { display: flex; align-items: center; justify-content: space-between; max-width: 1120px; margin: 0 auto; padding-bottom: 28px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.legal-header .wordmark { color: var(--foreground); }
+.legal-content { max-width: 760px; margin: 110px auto 0; }
+.legal-content h1 { margin: 0 0 14px; font-size: clamp(48px, 8vw, 104px); line-height: .9; letter-spacing: -.08em; font-weight: 500; }
+.legal-content h2 { margin: 58px 0 14px; font-size: 22px; letter-spacing: -.04em; font-weight: 500; }
+.legal-content p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+.legal-content a { color: var(--acid); text-decoration: underline; text-underline-offset: 4px; }
+.legal-updated { margin-top: 0; font-size: 12px !important; }
+.legal-back { display: inline-block; margin-top: 46px; }
+.footer-legal { display: inline-flex; gap: 16px; }
+@media (max-width: 700px) { .legal-page { padding: 22px 7vw 70px; }.legal-content { margin-top: 76px; }.legal-content h2 { margin-top: 42px; font-size: 20px; }.legal-content p { font-size: 14px; }.footer-legal { width: 100%; gap: 12px; } }
+.consent-banner { position: fixed; z-index: 120; left: 24px; right: 24px; bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 16px 18px; border: 1px solid var(--glass-border); border-radius: 14px; background: rgba(16, 17, 16, .94); box-shadow: var(--shadow-deep); backdrop-filter: blur(18px); }
+.consent-banner p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }.consent-banner div { display: flex; gap: 10px; flex-shrink: 0; }.consent-banner button { border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; color: var(--foreground); background: transparent; font: inherit; font-size: 11px; cursor: pointer; }.consent-banner button:last-child { border-color: var(--acid); color: var(--background); background: var(--acid); }.consent-banner button:focus-visible { outline: 1px solid var(--acid); outline-offset: 3px; }
+@media (max-width: 700px) { .consent-banner { left: 14px; right: 14px; bottom: 14px; align-items: stretch; flex-direction: column; gap: 12px; }.consent-banner div { justify-content: flex-end; } }
+
